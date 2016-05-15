@@ -9,24 +9,24 @@ namespace WebApiExcercise.Repository
     public class ProductRepository : IProductRepository
     {
 
-        private List<Product> _testTable; 
+        private List<Product> _productTable; 
         public ProductRepository() {
-            _testTable = TestDataHelper.GetMyProducts();
+            _productTable = TestDataHelper.GetMyProducts();
         }
 
         public void Add(Product product)
         {
-            _testTable.Add(product);
+            _productTable.Add(product);
         }
 
         public IEnumerable<Product> AllProducts()
         {
-            return _testTable;
+            return _productTable;
         }
 
         public Product GetById(int Id)
         {
-            var product = (from s in _testTable where s.Id == Id select s).SingleOrDefault();
+            var product = (from s in _productTable where s.Id == Id select s).SingleOrDefault();
             return product;
         }
 
@@ -34,7 +34,7 @@ namespace WebApiExcercise.Repository
         {
             var product = GetById(Id);
             if (product != null)
-                _testTable.Remove(product);
+                _productTable.Remove(product);
 
             return GetById(Id) == null;
         }

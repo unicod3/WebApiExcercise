@@ -8,24 +8,24 @@ namespace WebApiExcercise.Repository
 {
     public class UserRepository : IUserRepository
     {
-        private List<User> _testTable;
+        private List<User> _userTable;
         public UserRepository() {
-            _testTable = TestDataHelper.GetMyUsers();
+            _userTable = TestDataHelper.GetMyUsers();
         }
 
         public void Add(User user)
         {
-            _testTable.Add(user);
+            _userTable.Add(user);
         }
 
         public IEnumerable<User> AllUsers()
         {
-            return _testTable;
+            return _userTable;
         }
 
         public User GetById(int Id)
         {
-            var user = (from s in _testTable where s.Id == Id select s).SingleOrDefault();
+            var user = (from s in _userTable where s.Id == Id select s).SingleOrDefault();
             return user;
         }
 
@@ -33,7 +33,7 @@ namespace WebApiExcercise.Repository
         {
             var user = GetById(Id);
             if (user != null)
-                _testTable.Remove(user);
+                _userTable.Remove(user);
 
             return GetById(Id) == null;
         }

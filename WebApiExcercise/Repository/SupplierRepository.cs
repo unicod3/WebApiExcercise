@@ -8,24 +8,24 @@ namespace WebApiExcercise.Repository
 {
     public class SupplierRepository : ISupplierRepository
     {
-        private List<Supplier> _testTable;
+        private List<Supplier> _supplierTable;
 
         public SupplierRepository() {
-           _testTable  = TestDataHelper.GetMySuppliers();
+           _supplierTable  = TestDataHelper.GetMySuppliers();
         }
         public void Add(Supplier supplier)
         {
-            _testTable.Add(supplier);
+            _supplierTable.Add(supplier);
         }
 
         public IEnumerable<Supplier> AllSuppliers()
         {
-            return _testTable;
+            return _supplierTable;
         }
 
         public Supplier GetById(int Id)
         {
-            var supplier = (from s in _testTable where s.Id == Id select s).SingleOrDefault();
+            var supplier = (from s in _supplierTable where s.Id == Id select s).SingleOrDefault();
             return supplier;
         }
 
@@ -33,7 +33,7 @@ namespace WebApiExcercise.Repository
         {
             var supplier = GetById(Id);
             if (supplier != null)
-                _testTable.Remove(supplier);
+                _supplierTable.Remove(supplier);
 
             return GetById(Id) == null;
         }

@@ -8,27 +8,33 @@ namespace WebApiExcercise.Repository
 {
     public class PurchaseOrderRepository : IPurchaseOrderRepository
     {
-        private List<PurchaseOrder> _testTable;
+        private List<PurchaseOrder> _purchaseOrderTable;
+        private List<Product> _productTable;
         public PurchaseOrderRepository()
         {
-            _testTable = TestDataHelper.GetMyPurchaseOrders();
+            _purchaseOrderTable = TestDataHelper.GetMyPurchaseOrders();
+            _productTable = TestDataHelper.GetMyProducts();
         }
 
         public void Add(PurchaseOrder purchaseOrder)
         {
+            //get the product objects
+            foreach (var POLine in purchaseOrder.PurchaseOrderLine)
+                POLine.Product = _productTable.Where(x => x.Id == POLine.ProductId).SingleOrDefault();
+
             //calculate total amount of purchase order
             purchaseOrder.TotalAmount = CalculateTotalAmount(purchaseOrder);
-            _testTable.Add(purchaseOrder);
+            _purchaseOrderTable.Add(purchaseOrder);
         }
 
         public IEnumerable<PurchaseOrder> AllPurchaseOrders()
         {
-            return _testTable;
+            return _purchaseOrderTable;
         }
 
         public PurchaseOrder GetById(int Id)
         {
-            var purchaseOrder = (from s in _testTable where s.Id == Id select s).SingleOrDefault();
+            var purchaseOrder = (from s in _purchaseOrderTable where s.Id == Id select s).SingleOrDefault();
             return purchaseOrder;
         }
 
@@ -36,7 +42,7 @@ namespace WebApiExcercise.Repository
         {
             var purchaseOrder = GetById(Id);
             if (purchaseOrder != null)
-                _testTable.Remove(purchaseOrder);
+                _purchaseOrderTable.Remove(purchaseOrder);
 
             return GetById(Id) == null;
         }
@@ -45,7 +51,7 @@ namespace WebApiExcercise.Repository
         {
             //get the product objects
             foreach (var POLine in purchaseOrder.PurchaseOrderLine)
-                POLine.Product = TestDataHelper.GetMyProducts().Where(x => x.Id == POLine.ProductId).SingleOrDefault();
+                POLine.Product = _productTable.Where(x => x.Id == POLine.ProductId).SingleOrDefault();
 
             var oldPurchaseOrder = GetById(purchaseOrder.Id);
             oldPurchaseOrder.PurchaseDate = purchaseOrder.PurchaseDate;

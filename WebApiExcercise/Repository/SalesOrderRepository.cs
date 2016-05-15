@@ -8,27 +8,38 @@ namespace WebApiExcercise.Repository
 {
     public class SalesOrderRepository : ISalesOrderRepository
     {
-        private List<SalesOrder> _testTable;
+        private List<SalesOrder> _salesOrderTable;
+        private List<User> _userTable;
+        private List<Product> _productTable;
         public SalesOrderRepository()
         {
-            _testTable = TestDataHelper.GetMySalesOrders();
+            _salesOrderTable = TestDataHelper.GetMySalesOrders();
+            _userTable = TestDataHelper.GetMyUsers();
+            _productTable = TestDataHelper.GetMyProducts();
         }
 
         public void Add(SalesOrder salesOrder)
         {
+            //get the product objects
+            foreach (var SOLine in salesOrder.SalesOrderLine)
+                SOLine.Product = _productTable.Where(x => x.Id == SOLine.ProductId).SingleOrDefault();
+
+            //get the user object
+            salesOrder.User = _userTable.Where(x => x.Id == salesOrder.UserId).SingleOrDefault();
+
             //calculate total amount of sales order
             salesOrder.TotalAmount = CalculateTotalAmount(salesOrder);
-            _testTable.Add(salesOrder);
+            _salesOrderTable.Add(salesOrder);
         }
 
         public IEnumerable<SalesOrder> AllSalesOrders()
         {
-            return _testTable;
+            return _salesOrderTable;
         }
 
         public SalesOrder GetById(int Id)
         {
-            var salesOrder = (from s in _testTable where s.Id == Id select s).SingleOrDefault();
+            var salesOrder = (from s in _salesOrderTable where s.Id == Id select s).SingleOrDefault();
             return salesOrder;
         }
 
@@ -36,7 +47,7 @@ namespace WebApiExcercise.Repository
         {
             var salesOrder = GetById(Id);
             if (salesOrder != null)
-                _testTable.Remove(salesOrder);
+                _salesOrderTable.Remove(salesOrder);
 
             return GetById(Id) == null;
         }
@@ -45,13 +56,16 @@ namespace WebApiExcercise.Repository
         {
             //get the product objects
             foreach (var SOLine in salesOrder.SalesOrderLine)
-                SOLine.Product = TestDataHelper.GetMyProducts().Where(x => x.Id == SOLine.ProductId).SingleOrDefault();
+                SOLine.Product = _productTable.Where(x => x.Id == SOLine.ProductId).SingleOrDefault();
+
+            //get the user object
+            salesOrder.User = _userTable.Where(x => x.Id == salesOrder.UserId).SingleOrDefault();
 
             var oldSalesOrder = GetById(salesOrder.Id);
             oldSalesOrder.SalesDate = salesOrder.SalesDate;
             oldSalesOrder.SalesOrderLine = salesOrder.SalesOrderLine;
             oldSalesOrder.UserId = salesOrder.UserId;
-            oldSalesOrder.User = TestDataHelper.GetMyUsers().Where(x => x.Id == salesOrder.UserId).SingleOrDefault();
+            oldSalesOrder.User = _userTable.Where(x => x.Id == salesOrder.UserId).SingleOrDefault();
             oldSalesOrder.TotalAmount = CalculateTotalAmount(salesOrder);
         }
 

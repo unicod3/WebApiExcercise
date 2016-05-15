@@ -7,12 +7,12 @@ namespace WebApiExcercise.Repository
     {
         IEnumerable<Supplier> AllSuppliers();
 
-        Supplier GetById(int id);
+        Supplier GetById(int Id);
 
         void Add(Supplier supplier);
 
         void Update(Supplier supplier);
 
-        bool Remove(int id);
+        bool Remove(int Id);
     }
 }

@@ -7,32 +7,44 @@ using WebApiExcercise.Models;
 namespace WebApiExcercise.Repository
 {
     public class ProductRepository : IProductRepository
-    { 
+    {
 
+        private List<Product> _testTable; 
+        public ProductRepository() {
+            _testTable = TestDataHelper.GetMyProducts();
+        }
 
         public void Add(Product product)
         {
-            throw new NotImplementedException();
+            _testTable.Add(product);
         }
 
         public IEnumerable<Product> AllProducts()
         {
-            throw new NotImplementedException();
+            return _testTable;
         }
 
-        public Product GetById(int id)
+        public Product GetById(int Id)
         {
-            throw new NotImplementedException();
+            var product = (from s in _testTable where s.Id == Id select s).SingleOrDefault();
+            return product;
         }
 
-        public bool Remove(int id)
+        public bool Remove(int Id)
         {
-            throw new NotImplementedException();
+            var product = GetById(Id);
+            if (product != null)
+                _testTable.Remove(product);
+
+            return GetById(Id) == null;
         }
 
         public void Update(Product product)
         {
-            throw new NotImplementedException();
+            var oldProduct = GetById(product.Id);
+            oldProduct.Name = product.Name;
+            oldProduct.Price = product.Price;
+            oldProduct.SupplierId = product.SupplierId;
         }
     }
 }

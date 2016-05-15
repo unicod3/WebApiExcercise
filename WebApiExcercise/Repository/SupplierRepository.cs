@@ -7,20 +7,25 @@ using WebApiExcercise.Models;
 namespace WebApiExcercise.Repository
 {
     public class SupplierRepository : ISupplierRepository
-    { 
+    {
+        private List<Supplier> _testTable;
+
+        public SupplierRepository() {
+           _testTable  = TestDataHelper.GetMySuppliers();
+        }
         public void Add(Supplier supplier)
         {
-            TestDataHelper.GetMySuppliers.Add(supplier);
+            _testTable.Add(supplier);
         }
 
         public IEnumerable<Supplier> AllSuppliers()
         {
-            return TestDataHelper.GetMySuppliers;
+            return _testTable;
         }
 
         public Supplier GetById(int Id)
         {
-            var supplier = (from s in TestDataHelper.GetMySuppliers where s.Id == Id select s).SingleOrDefault();
+            var supplier = (from s in _testTable where s.Id == Id select s).SingleOrDefault();
             return supplier;
         }
 
@@ -28,7 +33,7 @@ namespace WebApiExcercise.Repository
         {
             var supplier = GetById(Id);
             if (supplier != null)
-                TestDataHelper.GetMySuppliers.Remove(supplier);
+                _testTable.Remove(supplier);
 
             return GetById(Id) == null;
         }

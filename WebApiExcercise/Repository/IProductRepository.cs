@@ -7,12 +7,12 @@ namespace WebApiExcercise.Repository
     {
         IEnumerable<Product> AllProducts();
 
-        Product GetById(int id);
+        Product GetById(int Id);
 
         void Add(Product product);
 
         void Update(Product product);
 
-        bool Remove(int id);
+        bool Remove(int Id);
     }
 }

@@ -40,6 +40,11 @@ namespace WebApiExcercise.Controllers
             _supplierRepository.Add(supplier);
         }
 
+        [HttpPut]
+        public void Put(Supplier supplier) {
+            _supplierRepository.Update(supplier);
+        }
+
         
         public void Delete(string Id)
         {

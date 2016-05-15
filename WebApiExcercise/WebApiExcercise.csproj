@@ -123,11 +123,14 @@
     </Compile>
     <Compile Include="Models\Product.cs" />
     <Compile Include="Models\Supplier.cs" />
+    <Compile Include="Models\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repository\IProductRepository.cs" />
     <Compile Include="Repository\ISupplierRepository.cs" />
+    <Compile Include="Repository\IUserRepository.cs" />
     <Compile Include="Repository\ProductRepository.cs" />
     <Compile Include="Repository\SupplierRepository.cs" />
+    <Compile Include="Repository\UserRepository.cs" />
     <Compile Include="TestDataHelper.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -7,13 +7,14 @@ using WebApiExcercise.Models;
 namespace WebApiExcercise
 {
     public static class TestDataHelper
-    { 
+    {
 
+        
         private static List<Product> Chocolate = new List<Product>() {
                 new Product { Id = 1, Name="Aero", Price = 5, SupplierId = 1},
                 new Product { Id = 2, Name="Aero Caramel", Price = 10, SupplierId = 1 },
                 new Product { Id = 3, Name="Aero Mint", Price = 15,SupplierId = 1 }
-            };
+            }; 
 
         private static List<Product> Tea = new List<Product>() {
                 new Product { Id = 4, Name="Blueberry", Price = 5, SupplierId = 2 },
@@ -34,7 +35,16 @@ namespace WebApiExcercise
             NewList = NewList.Concat(Chocolate).Concat(Tea).ToList<Product>();
             return NewList;
         }
-        
+
+
+        public static List<User> GetMyUsers()
+        {
+            return new List<User>() {
+                 new User { Id = 1,  Name = "John Doe", Email = "johndoe@doe.com" },
+                 new User { Id = 2,  Name = "Jane Doe", Email = "janedoe@doe.com" }
+            };
+        }
+
 
     }
 }

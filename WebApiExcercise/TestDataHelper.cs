@@ -16,9 +16,9 @@ namespace WebApiExcercise
             };
 
         private static List<Product> Tea = new List<Product>() {
-                new Product { Id = 1, Name="Blueberry", Price = 5, SupplierId = 2 },
-                new Product { Id = 2, Name="Chai", Price = 10, SupplierId = 2 },
-                new Product { Id = 3, Name="Cinnamon", Price = 15, SupplierId = 2 }
+                new Product { Id = 4, Name="Blueberry", Price = 5, SupplierId = 2 },
+                new Product { Id = 5, Name="Chai", Price = 10, SupplierId = 2 },
+                new Product { Id = 6, Name="Cinnamon", Price = 15, SupplierId = 2 }
             };
 
         public static List<Supplier> GetMySuppliers()
@@ -31,7 +31,7 @@ namespace WebApiExcercise
 
         public static List<Product> GetMyProducts() {
             List<Product> NewList = new List<Product>();
-            NewList.Concat(Chocolate).Concat(Tea);
+            NewList = NewList.Concat(Chocolate).Concat(Tea).ToList<Product>();
             return NewList;
         }
         

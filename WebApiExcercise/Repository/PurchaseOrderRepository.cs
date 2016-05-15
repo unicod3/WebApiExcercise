@@ -43,11 +43,13 @@ namespace WebApiExcercise.Repository
 
         public void Update(PurchaseOrder purchaseOrder)
         {
+            //get the product objects
+            foreach (var POLine in purchaseOrder.PurchaseOrderLine)
+                POLine.Product = TestDataHelper.GetMyProducts().Where(x => x.Id == POLine.ProductId).SingleOrDefault();
+
             var oldPurchaseOrder = GetById(purchaseOrder.Id);
             oldPurchaseOrder.PurchaseDate = purchaseOrder.PurchaseDate;
-            oldPurchaseOrder.PurchaseOrderLine = purchaseOrder.PurchaseOrderLine;
-            oldPurchaseOrder.SupplierId = purchaseOrder.SupplierId;
-            oldPurchaseOrder.Supplier = TestDataHelper.GetMySuppliers().Where(x => x.Id == purchaseOrder.SupplierId).SingleOrDefault();
+            oldPurchaseOrder.PurchaseOrderLine = purchaseOrder.PurchaseOrderLine; 
             oldPurchaseOrder.TotalAmount = CalculateTotalAmount(purchaseOrder);
         }
 

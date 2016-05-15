@@ -8,15 +8,22 @@ namespace WebApiExcercise
 {
     public static class TestDataHelper
     {
+
+        /// <summary>
+        /// Supplier List
+        /// </summary>
+        private static Supplier Supplier1 = new Supplier { Id = 1, Name = "Nestle", PaymentDay = DateTime.Now.AddMonths(1), Products = Chocolate };
+        private static Supplier Supplier2 = new Supplier { Id = 2, Name = "Lipton", PaymentDay = DateTime.Now.AddMonths(2), Products = Tea };
+
         /// <summary>
         /// List Of Products
-        /// </summary>
-        private static Product P1 = new Product { Id = 1, Name = "Aero", Price = 5, SupplierId = 1 };
-        private static Product P2 = new Product { Id = 2, Name = "Aero Caramel", Price = 10, SupplierId = 1 };
-        private static Product P3 = new Product { Id = 3, Name = "Aero Mint", Price = 15, SupplierId = 1 };
-        private static Product P4 = new Product { Id = 4, Name = "Blueberry", Price = 5, SupplierId = 2 };
-        private static Product P5 = new Product { Id = 5, Name = "Chai", Price = 10, SupplierId = 2 };
-        private static Product P6 = new Product { Id = 6, Name = "Cinnamon", Price = 15, SupplierId = 2 };
+        /// </summary> 
+        private static Product P1 = new Product { Id = 1, Name = "Aero", Price = 5, SupplierId = 1, Supplier = Supplier1 };
+        private static Product P2 = new Product { Id = 2, Name = "Aero Caramel", Price = 10, SupplierId = 1, Supplier = Supplier1 };
+        private static Product P3 = new Product { Id = 3, Name = "Aero Mint", Price = 15, SupplierId = 1, Supplier = Supplier1 };
+        private static Product P4 = new Product { Id = 4, Name = "Blueberry", Price = 5, SupplierId = 2, Supplier = Supplier2 };
+        private static Product P5 = new Product { Id = 5, Name = "Chai", Price = 10, SupplierId = 2, Supplier = Supplier2 };
+        private static Product P6 = new Product { Id = 6, Name = "Cinnamon", Price = 15, SupplierId = 2, Supplier = Supplier2 };
 
         /// <summary>
         /// Chocolate List
@@ -27,6 +34,7 @@ namespace WebApiExcercise
         /// Tea List
         /// </summary>
         private static List<Product> Tea = new List<Product>() { P4, P5, P6 };
+
 
         /// <summary>
         /// List Of Purchase Order Line
@@ -39,9 +47,9 @@ namespace WebApiExcercise
         };
         private static List<PurchaseOrderLine> PO2 = new List<PurchaseOrderLine>()
         {
-            new PurchaseOrderLine { Id = 1, ProductId = 4, Product = P4, Quantity = 10 },
-            new PurchaseOrderLine { Id = 2, ProductId = 5, Product = P5, Quantity = 10 },
-            new PurchaseOrderLine { Id = 3, ProductId = 6, Product = P6, Quantity = 10 }
+            new PurchaseOrderLine { Id = 1, ProductId = 4, Product = P4, Quantity = 5 },
+            new PurchaseOrderLine { Id = 2, ProductId = 5, Product = P5, Quantity = 5 },
+            new PurchaseOrderLine { Id = 3, ProductId = 6, Product = P6, Quantity = 5 }
         };
 
 
@@ -52,10 +60,7 @@ namespace WebApiExcercise
         /// <returns>List<Supplier></returns>
         public static List<Supplier> GetMySuppliers()
         {
-            return new List<Supplier>() {
-                 new Supplier { Id = 1,  Name = "Nestle", PaymentDay = DateTime.Now.AddMonths(1), Products = Chocolate },
-                 new Supplier { Id = 2,  Name = "Lipton", PaymentDay = DateTime.Now.AddMonths(2), Products = Tea }
-            };
+            return new List<Supplier>() { Supplier1, Supplier2 };
         }
 
         /// <summary>
@@ -85,8 +90,8 @@ namespace WebApiExcercise
         public static List<PurchaseOrder> GetMyPurchaseOrders()
         {
             return new List<PurchaseOrder>() {
-                 new PurchaseOrder { Id = 1,  SupplierId = 1, PurchaseDate = DateTime.Now.AddMonths(-1), PurchaseOrderLine = PO1 },
-                 new PurchaseOrder { Id = 2,  SupplierId = 2, PurchaseDate = DateTime.Now.AddMonths(-2), PurchaseOrderLine = PO2 }
+                 new PurchaseOrder { Id = 1,  TotalAmount = 150, PurchaseDate = DateTime.Now.AddMonths(-1), PurchaseOrderLine = PO1 },
+                 new PurchaseOrder { Id = 2,  TotalAmount = 150, PurchaseDate = DateTime.Now.AddMonths(-2), PurchaseOrderLine = PO2 }
             };
         }
 

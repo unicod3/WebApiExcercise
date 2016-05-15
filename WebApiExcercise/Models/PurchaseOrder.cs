@@ -15,10 +15,7 @@ namespace WebApiExcercise.Models
         public virtual ICollection<PurchaseOrderLine> PurchaseOrderLine { get; set; }
 
         public double TotalAmount { get; set; }
-
-        [ForeignKey("Supplier")]
-        public int SupplierId { get; set; }
-        public virtual Supplier Supplier { get; set; } 
+        
     }
 
     public class PurchaseOrderLine

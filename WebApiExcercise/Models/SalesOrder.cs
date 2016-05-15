@@ -10,11 +10,16 @@ namespace WebApiExcercise.Models
     {
         public int Id { get; set; }
 
-        public DateTime PurchaseDate { get; set; }
+        public DateTime SalesDate { get; set; }
 
         public virtual ICollection<SalesOrderLine> SalesOrderLine { get; set; }
 
         public double TotalAmount { get; set; }
+
+        [ForeignKey("User")]
+        public int? UserId { get; set; }
+        public virtual User User { get; set; }
+
     }
 
     public class SalesOrderLine

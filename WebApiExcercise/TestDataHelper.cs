@@ -16,6 +16,12 @@ namespace WebApiExcercise
         private static Supplier Supplier2 = new Supplier { Id = 2, Name = "Lipton", PaymentDay = DateTime.Now.AddMonths(2), Products = Tea };
 
         /// <summary>
+        /// User List
+        /// </summary>
+        private static User User1 = new User { Id = 1, Name = "John Doe", Email = "johndoe@doe.com" };
+        private static User User2 = new User { Id = 2,  Name = "Jane Doe", Email = "janedoe@doe.com" };
+
+        /// <summary>
         /// List Of Products
         /// </summary> 
         private static Product P1 = new Product { Id = 1, Name = "Aero", Price = 5, SupplierId = 1, Supplier = Supplier1 };
@@ -50,8 +56,23 @@ namespace WebApiExcercise
             new PurchaseOrderLine { Id = 1, ProductId = 4, Product = P4, Quantity = 5 },
             new PurchaseOrderLine { Id = 2, ProductId = 5, Product = P5, Quantity = 5 },
             new PurchaseOrderLine { Id = 3, ProductId = 6, Product = P6, Quantity = 5 }
-        };
+        }; 
 
+        /// <summary>
+        /// List Of Sales Order Line
+        /// </summary>
+        private static List<SalesOrderLine> SO1 = new List<SalesOrderLine>()
+        {
+            new SalesOrderLine { Id = 1, ProductId = 1, Product = P1, Quantity = 2 },
+            new SalesOrderLine { Id = 2, ProductId = 2, Product = P2, Quantity = 2 },
+            new SalesOrderLine { Id = 3, ProductId = 3, Product = P3, Quantity = 2 }
+        };
+        private static List<SalesOrderLine> SO2 = new List<SalesOrderLine>()
+        {
+            new SalesOrderLine { Id = 1, ProductId = 4, Product = P4, Quantity = 5 },
+            new SalesOrderLine { Id = 2, ProductId = 5, Product = P5, Quantity = 5 },
+            new SalesOrderLine { Id = 3, ProductId = 6, Product = P6, Quantity = 5 }
+        };
 
 
         /// <summary>
@@ -77,10 +98,7 @@ namespace WebApiExcercise
         /// <returns>List<User></returns>
         public static List<User> GetMyUsers()
         {
-            return new List<User>() {
-                 new User { Id = 1,  Name = "John Doe", Email = "johndoe@doe.com" },
-                 new User { Id = 2,  Name = "Jane Doe", Email = "janedoe@doe.com" }
-            };
+            return new List<User>() { User1, User2 };
         }
 
         /// <summary>
@@ -92,6 +110,18 @@ namespace WebApiExcercise
             return new List<PurchaseOrder>() {
                  new PurchaseOrder { Id = 1,  TotalAmount = 150, PurchaseDate = DateTime.Now.AddMonths(-1), PurchaseOrderLine = PO1 },
                  new PurchaseOrder { Id = 2,  TotalAmount = 150, PurchaseDate = DateTime.Now.AddMonths(-2), PurchaseOrderLine = PO2 }
+            };
+        }
+
+        /// <summary>
+        /// Get List Of SalesOrders
+        /// </summary>
+        /// <returns>List<SalesOrder></returns>
+        public static List<SalesOrder> GetMySalesOrders()
+        {
+            return new List<SalesOrder>() {
+                 new SalesOrder { Id = 1,  TotalAmount = 150, SalesDate = DateTime.Now.AddDays(-1), UserId = 1, User = User1, SalesOrderLine = SO2 },
+                 new SalesOrder { Id = 2,  TotalAmount = 150, SalesDate = DateTime.Now.AddDays(-2), UserId = 2, User = User2, SalesOrderLine = SO2 }
             };
         }
 

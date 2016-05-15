@@ -10,15 +10,15 @@ namespace WebApiExcercise.Repository
     {
 
         public static List<Product> Chocolate = new List<Product>() {
-                new Product { Id = 1, Name="Aero", Price = 5 },
-                new Product { Id = 2, Name="Aero Caramel", Price = 10 },
-                new Product { Id = 3, Name="Aero Mint", Price = 15 }
+                new Product { Id = 1, Name="Aero", Price = 5, SupplierId = 1},
+                new Product { Id = 2, Name="Aero Caramel", Price = 10, SupplierId = 1 },
+                new Product { Id = 3, Name="Aero Mint", Price = 15,SupplierId = 1 }
             };
 
         public static List<Product> Tea = new List<Product>() {
-                new Product { Id = 1, Name="Blueberry", Price = 5 },
-                new Product { Id = 2, Name="Chai", Price = 10 },
-                new Product { Id = 3, Name="Cinnamon", Price = 15 }
+                new Product { Id = 1, Name="Blueberry", Price = 5, SupplierId = 2 },
+                new Product { Id = 2, Name="Chai", Price = 10, SupplierId = 2 },
+                new Product { Id = 3, Name="Cinnamon", Price = 15, SupplierId = 2 }
             };
 
         public static List<Supplier> MySuppliers = new List<Supplier>() {

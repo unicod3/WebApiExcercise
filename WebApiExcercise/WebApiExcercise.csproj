@@ -229,6 +229,10 @@
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Home\Supplier.cshtml" />
+    <Content Include="Views\Home\User.cshtml" />
+    <Content Include="Views\Home\Product.cshtml" />
+    <Content Include="Views\Home\PurchaseOrder.cshtml" />
+    <Content Include="Views\Home\SalesOrder.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

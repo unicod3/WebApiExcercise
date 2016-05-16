@@ -18,6 +18,7 @@ namespace WebApiExcercise.Repository
 
         public void Add(PurchaseOrder purchaseOrder)
         {
+            purchaseOrder.Id = _purchaseOrderTable.LastOrDefault().Id + 1;
             //get the product objects
             foreach (var POLine in purchaseOrder.PurchaseOrderLine)
                 POLine.Product = _productTable.Where(x => x.Id == POLine.ProductId).SingleOrDefault();

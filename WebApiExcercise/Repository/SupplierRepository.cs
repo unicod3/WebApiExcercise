@@ -15,6 +15,7 @@ namespace WebApiExcercise.Repository
         }
         public void Add(Supplier supplier)
         {
+            supplier.Id = _supplierTable.LastOrDefault().Id + 1;
             _supplierTable.Add(supplier);
         }
 

@@ -20,47 +20,65 @@
                 <td>{{supp.PurchaseOrderLine.length}}</td>
                 <td>R$ {{supp.TotalAmount}}</td>
                 <td>
-                    <a class="text-primary" href="#" ng-click="edit(supp.Id)"><i class="glyphicon glyphicon-edit"></i> Edit</a>
-                    <a class="text-danger" href="#" ng-click="delete(supp.Id)"><i class="glyphicon glyphicon-remove"></i> Delete</a>
+                    <a class="text-primary" href="" ng-click="edit(supp.Id)"><i class="glyphicon glyphicon-edit"></i> Edit</a>
+                    <a class="text-danger" href="" ng-click="delete(supp.Id)"><i class="glyphicon glyphicon-remove"></i> Delete</a>
                 </td>
             </tr>
         </table>
 
         <h2>{{formTitle}}</h2>
-        <form name="supplierForm" ng-submit="submitForm(PurchaseOrder)">
-            <div class="row">
-                <div class="form-group col-md-4">
-                    <label for="ID">ID</label>
-                    <input type="text" id="ID" class="form-control" placeholder="Product ID" ng-model="PurchaseOrder.Id" disabled>
+        <div class="container"> 
+            <form name="supplierForm" ng-submit="submitForm(PurchaseOrder)">
+                <div class="row">
+                    <fieldset>
+                        <legend>Purchase Order Info</legend>
+                        <div class="">
+                            <div class="form-group col-md-4">
+                                <label for="ID">ID</label>
+                                <input type="text" id="ID" class="form-control" placeholder="Product ID" ng-model="PurchaseOrder.Id" disabled>
+                            </div>
+                            <div class="form-group col-md-4">
+                                <label for="PurchaseDate">Purchase Date</label>
+                                <input class="form-control" id="PurchaseDate" type="date" placeholder="MM-dd-yyyy" min="1900-01-01" max="2060-12-31" ng-model="PurchaseOrder.PurchaseDate" required>
+
+                            </div>
+                            <div class="form-group col-md-4">
+                                <label for="TotalAmount">Total Amount</label>
+                                <input type="text" id="TotalAmount" class="form-control" placeholder="Total Amount" ng-model="PurchaseOrder.TotalAmount" disabled>
+                            </div>
+                        </div>
+                    </fieldset>
                 </div>
-            </div>
-            <div class="row">
-                <div class="form-group col-md-4">
-                    <label for="PurchaseDate">Purchase Date</label>
-                    <input class="form-control" id="PurchaseDate" type="date" placeholder="MM-dd-yyyy" min="1900-01-01" max="2060-12-31" ng-model="PurchaseOrder.PurchaseDate">
+                <div class="row">
+                    <fieldset>
+                        <legend>Purchase Order Line</legend>
+                        <a class="btn btn-sm btn-success" data-ng-click="cloneItem()"><i class="glyphicon glyphicon-duplicate"></i> New Line </a>
+                        <div class="row" data-ng-repeat="POLine in PurchaseOrder.PurchaseOrderLine">
+                            <div class="form-group col-md-4">
+                                <label for="ProductId">Product</label>
+                                <select id="ProductId" class="form-control" ng-model="POLine.ProductId" ng-options="s.Id as s.Name for s in products" required>
+                                    <option value="">Choose Option</option>
+                                </select>
+                            </div>
+                            <div class="form-group col-md-2">
+                                <label for="QTY">Quantity</label>
+                                <input type="text" id="QTY" class="form-control" placeholder="Quantity" ng-model="POLine.Quantity" required>
+                            </div>
+                            <div class="col-md-4">
+                                <label for="">Operations</label>
+                                <br />
+                                
+                                <a class="btn btn-sm btn-warning  delete-field-{{$index}}" data-ng-click="removeItem(POLine)"><i class="glyphicon glyphicon-remove-circle"></i> Remove Line </a>
+                            </div>
+                        </div>
+                    </fieldset>
 
                 </div> 
-            </div> 
-            <div class="row">
-                <div class="form-group col-md-4">
-                    <label for="TotalAmount">Total Amount</label>
-                    <input type="text" id="TotalAmount" class="form-control" placeholder="Total Amount" ng-model="PurchaseOrder.TotalAmount" disabled>
+                <div class="row">
+                    <button type="submit" class="btn btn-default">Add/Update</button>
+                    <button type="reset" class="btn btn-default">Clear</button>
                 </div>
-            </div>
-            <div class="row">
-                <div class="form-group col-md-3">
-                    <label for="Product">Product</label>
-                    <select id="Product" class="form-control" ng-model="PurchaseOrder.PurchaseOrderLine.ProductId" ng-options="s.Id as s.Name for s in products track by s.Id" required>
-                        <option value="">Choose Option</option>
-                    </select> 
-                </div>
-                <div class="form-group col-md-1">
-                    <label for="QTY">Quantity</label>
-                    <input type="text" id="QTY" class="form-control" placeholder="Quantity" ng-model="PurchaseOrder.PurchaseOrderLine.Quantity" >
-                </div>
-            </div>
-            <button type="submit" class="btn btn-default">Add/Update</button>
-            <button type="reset" class="btn btn-default">Clear</button>
-        </form>
+            </form>
+        </div>
     </div>
 </div>

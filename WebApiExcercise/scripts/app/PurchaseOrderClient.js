@@ -31,11 +31,11 @@ MyModule.controller('PurchaseOrderController', ['$scope', 'PurchaseOrderService'
     $scope.edit = function getSingle(Id) {
         PurchaseOrderService.getSingle(Id)
             .success(function (supp) {
-                $scope.PurchaseOrders = {};
-                $scope.PurchaseOrders.Id = supp.Id;
-                $scope.PurchaseOrders.PurchaseDate = supp.PurchaseDate;
-                $scope.PurchaseOrders.TotalAmount = supp.TotalAmount;
-                //$scope.PurchaseOrders.SupplierId = supp.Supplier;
+                $scope.PurchaseOrder = {};
+                $scope.PurchaseOrder.Id = supp.Id;
+                $scope.PurchaseOrder.PurchaseDate = new Date(supp.PurchaseDate);
+                $scope.PurchaseOrder.TotalAmount = supp.TotalAmount;
+                $scope.PurchaseOrder.PurchaseOrderLine = supp.PurchaseOrderLine; 
             })
             .error(function (error) {
                 $scope.status = 'Unable to load data: ' + error.message;
@@ -49,6 +49,7 @@ MyModule.controller('PurchaseOrderController', ['$scope', 'PurchaseOrderService'
             .success(function () {
                 alert("Deleted successfully!!");
                 getAll();
+                resetForm();
             })
             .error(function (error) {
                 $scope.status = 'Unable to load data: ' + error.message;
@@ -82,11 +83,38 @@ MyModule.controller('PurchaseOrderController', ['$scope', 'PurchaseOrderService'
         }
     }
 
+
+    $scope.cloneItem = function () {
+        var itemToClone = { "ProductId": "", "Quantity": "" };
+        $scope.PurchaseOrder.PurchaseOrderLine.push(itemToClone);
+    }
+
+    $scope.removeItem = function (item) { 
+        index = $scope.PurchaseOrder.PurchaseOrderLine.indexOf(item)
+        $scope.PurchaseOrder.PurchaseOrderLine.splice(index, 1);
+    }
+
+
+
+    $scope.PurchaseOrder = {};
+    $scope.PurchaseOrder.PurchaseOrderLine = [
+            {
+                "ProductId": "",
+                "Quantity": ""
+            }]
+
+
+
     function resetForm() {
         $scope.PurchaseOrder = {};
         $scope.PurchaseOrder.Id = '';
         $scope.PurchaseOrder.Name = '';
         $scope.PurchaseOrder.TotalAmount = '';
+        $scope.PurchaseOrder.PurchaseOrderLine = [
+            {
+                "ProductId": "",
+                "Quantity": ""
+            }]
 
     }
 }]);

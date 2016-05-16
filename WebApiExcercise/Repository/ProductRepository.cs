@@ -9,13 +9,18 @@ namespace WebApiExcercise.Repository
     public class ProductRepository : IProductRepository
     {
 
-        private List<Product> _productTable; 
+        private List<Product> _productTable;
+        private List<Supplier> _supplierTable;
+
         public ProductRepository() {
             _productTable = TestDataHelper.GetMyProducts();
+            _supplierTable = TestDataHelper.GetMySuppliers();
         }
 
         public void Add(Product product)
         {
+            product.Id = _productTable.LastOrDefault().Id + 1;
+            product.Supplier = _supplierTable.Where(x => x.Id == product.SupplierId).SingleOrDefault();
             _productTable.Add(product);
         }
 
@@ -45,6 +50,7 @@ namespace WebApiExcercise.Repository
             oldProduct.Name = product.Name;
             oldProduct.Price = product.Price;
             oldProduct.SupplierId = product.SupplierId;
+            oldProduct.Supplier = _supplierTable.Where(x => x.Id == product.SupplierId).SingleOrDefault();
         }
     }
 }

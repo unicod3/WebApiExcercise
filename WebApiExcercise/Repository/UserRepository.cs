@@ -15,6 +15,7 @@ namespace WebApiExcercise.Repository
 
         public void Add(User user)
         {
+            user.Id = _userTable.LastOrDefault().Id + 1;
             _userTable.Add(user);
         }
 

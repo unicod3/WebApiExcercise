@@ -12,8 +12,8 @@ namespace WebApiExcercise
         /// <summary>
         /// Supplier List
         /// </summary>
-        private static Supplier Supplier1 = new Supplier { Id = 1, Name = "Nestle", PaymentDay = DateTime.Now.AddMonths(1), Products = Chocolate };
-        private static Supplier Supplier2 = new Supplier { Id = 2, Name = "Lipton", PaymentDay = DateTime.Now.AddMonths(2), Products = Tea };
+        private static Supplier Supplier1 = new Supplier { Id = 1, Name = "Nestle", Products = Chocolate };
+        private static Supplier Supplier2 = new Supplier { Id = 2, Name = "Lipton", Products = Tea };
 
         /// <summary>
         /// User List

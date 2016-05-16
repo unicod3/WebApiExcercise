@@ -7,7 +7,6 @@ namespace WebApiExcercise.Models
     {
         public int Id { get; set; }
         public string Name { get; set; }
-        public DateTime PaymentDay { get; set; }
         public virtual ICollection<Product> Products { get; set; }
     }
 }

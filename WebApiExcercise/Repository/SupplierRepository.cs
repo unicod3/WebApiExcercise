@@ -43,7 +43,6 @@ namespace WebApiExcercise.Repository
         {
             var oldSupplier = GetById(supplier.Id);
             oldSupplier.Name = supplier.Name;
-            oldSupplier.PaymentDay = supplier.PaymentDay;
             oldSupplier.Products = supplier.Products;
         }
     }

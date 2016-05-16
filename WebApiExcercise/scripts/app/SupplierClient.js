@@ -25,8 +25,7 @@ MyModule.controller('SupplierController', ['$scope','SupplierService', function 
             .success(function (supp) { 
                 $scope.Supplier = {};
                 $scope.Supplier.Id = supp.Id;
-                $scope.Supplier.Name = supp.Name;
-                $scope.Supplier.PaymentDay = new Date(supp.PaymentDay);
+                $scope.Supplier.Name = supp.Name; 
             })
             .error(function (error) {
                 $scope.status = 'Unable to load data: ' + error.message;
@@ -76,8 +75,7 @@ MyModule.controller('SupplierController', ['$scope','SupplierService', function 
     function resetForm() {
         $scope.Supplier = {};
         $scope.Supplier.Id = '';
-        $scope.Supplier.Name = '';
-        $scope.Supplier.PaymentDay = new Date();
+        $scope.Supplier.Name = ''; 
        }
 }]);
 

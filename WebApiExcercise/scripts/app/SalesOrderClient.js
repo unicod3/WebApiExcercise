@@ -57,7 +57,7 @@ MyModule.controller('SalesOrderController', ['$scope', 'SalesOrderService', func
                 $scope.SalesOrder.SalesDate = new Date(supp.SalesDate);
                 $scope.SalesOrder.TotalAmount = supp.TotalAmount;
                 $scope.SalesOrder.SalesOrderLine = supp.SalesOrderLine;
-                $scope.SalesOrder.UserId = supp.User;
+                $scope.SalesOrder.User = supp.User;
             })
             .error(function (error) {
                 $scope.status = 'Unable to load data: ' + error.message;

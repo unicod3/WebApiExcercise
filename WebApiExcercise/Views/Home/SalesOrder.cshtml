@@ -41,7 +41,7 @@
                             </div>
                             <div class="form-group col-md-3">
                                 <label for="UserId">User</label>
-                                <select id="UserId" class="form-control" ng-model="SalesOrder.UserId" ng-options="s.Id as s.Name for s in users track by s.Id" required>
+                                <select id="UserId" class="form-control" ng-model="SalesOrder.User.Id" ng-options="s.Id as s.Name for s in users" required>
                                     <option value="">Choose Option</option>
                                 </select>
                             </div>

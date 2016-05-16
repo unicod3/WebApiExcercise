@@ -35,7 +35,7 @@ MyModule.controller('ProductController', ['$scope', 'ProductService', function (
                 $scope.Product.Id = supp.Id;
                 $scope.Product.Name = supp.Name;
                 $scope.Product.Price = supp.Price;
-                $scope.Product.SupplierId = supp.Supplier;
+                $scope.Product.Supplier = supp.Supplier;
             })
             .error(function (error) {
                 $scope.status = 'Unable to load data: ' + error.message;

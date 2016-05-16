@@ -50,7 +50,7 @@
             <div class="row">
                 <div class="form-group col-md-4">
                     <label for="Supplier">Supplier</label>
-                    <select id="Supplier" class="form-control" ng-model="Product.SupplierId" ng-options="s.Id as s.Name for s in suppliers track by s.Id" required>
+                    <select id="Supplier" class="form-control" ng-model="Product.Supplier.Id" ng-options="s.Id as s.Name for s in suppliers" required>
                         <option value="">Choose Option</option>
                     </select>
                 </div>

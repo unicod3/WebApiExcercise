@@ -20,7 +20,8 @@ namespace WebApiExcercise.Repository
         public void Add(Product product)
         {
             product.Id = _productTable.LastOrDefault().Id + 1;
-            product.Supplier = _supplierTable.Where(x => x.Id == product.SupplierId).SingleOrDefault();
+            product.SupplierId = product.Supplier.Id;
+            product.Supplier = _supplierTable.Where(x => x.Id == product.Supplier.Id).SingleOrDefault();
             _productTable.Add(product);
         }
 
@@ -49,8 +50,8 @@ namespace WebApiExcercise.Repository
             var oldProduct = GetById(product.Id);
             oldProduct.Name = product.Name;
             oldProduct.Price = product.Price;
-            oldProduct.SupplierId = product.SupplierId;
-            oldProduct.Supplier = _supplierTable.Where(x => x.Id == product.SupplierId).SingleOrDefault();
+            oldProduct.SupplierId = product.Supplier.Id;
+            oldProduct.Supplier = _supplierTable.Where(x => x.Id == product.Supplier.Id).SingleOrDefault();
         }
     }
 }

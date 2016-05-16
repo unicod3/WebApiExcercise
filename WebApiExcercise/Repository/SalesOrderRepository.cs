@@ -26,7 +26,8 @@ namespace WebApiExcercise.Repository
                 SOLine.Product = _productTable.Where(x => x.Id == SOLine.ProductId).SingleOrDefault();
 
             //get the user object
-            salesOrder.User = _userTable.Where(x => x.Id == salesOrder.UserId).SingleOrDefault();
+            salesOrder.UserId = salesOrder.User.Id;
+            salesOrder.User = _userTable.Where(x => x.Id == salesOrder.User.Id).SingleOrDefault();
 
             //calculate total amount of sales order
             salesOrder.TotalAmount = CalculateTotalAmount(salesOrder);
@@ -60,7 +61,8 @@ namespace WebApiExcercise.Repository
                 SOLine.Product = _productTable.Where(x => x.Id == SOLine.ProductId).SingleOrDefault();
 
             //get the user object
-            salesOrder.User = _userTable.Where(x => x.Id == salesOrder.UserId).SingleOrDefault();
+            salesOrder.UserId = salesOrder.User.Id;
+            salesOrder.User = _userTable.Where(x => x.Id == salesOrder.User.Id).SingleOrDefault();
 
             var oldSalesOrder = GetById(salesOrder.Id);
             oldSalesOrder.SalesDate = salesOrder.SalesDate;

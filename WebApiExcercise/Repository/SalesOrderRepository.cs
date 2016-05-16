@@ -20,6 +20,7 @@ namespace WebApiExcercise.Repository
 
         public void Add(SalesOrder salesOrder)
         {
+            salesOrder.Id = _salesOrderTable.LastOrDefault().Id + 1;
             //get the product objects
             foreach (var SOLine in salesOrder.SalesOrderLine)
                 SOLine.Product = _productTable.Where(x => x.Id == SOLine.ProductId).SingleOrDefault();
@@ -65,7 +66,7 @@ namespace WebApiExcercise.Repository
             oldSalesOrder.SalesDate = salesOrder.SalesDate;
             oldSalesOrder.SalesOrderLine = salesOrder.SalesOrderLine;
             oldSalesOrder.UserId = salesOrder.UserId;
-            oldSalesOrder.User = _userTable.Where(x => x.Id == salesOrder.UserId).SingleOrDefault();
+            oldSalesOrder.User = salesOrder.User;
             oldSalesOrder.TotalAmount = CalculateTotalAmount(salesOrder);
         }
 

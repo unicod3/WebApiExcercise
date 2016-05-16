@@ -1,7 +1,91 @@
-﻿
-@{
-    ViewBag.Title = "SalesOrder";
+﻿@section Scripts{
+    <script src="~/scripts/app/SalesOrderClient.js"></script>
 }
 
-<h2>SalesOrder</h2>
+<div class="container" ng-app="MyApp">
+    <div ng-controller="SalesOrderController">
+        <h2>{{pageTitle}}</h2>
 
+        <table class="table table-bordered table-striped table-responsive">
+            <tr>
+                <th>ID</th>
+                <th>User</th>
+                <th>Date</th>
+                <th>Item Line Quantity</th>
+                <th>Amount</th>
+                <th> </th>
+            </tr>
+            <tr ng-repeat="supp in salesOrders">
+                <td>{{supp.Id}}</td>
+                <td>{{supp.User.Name}}</td>
+                <td>{{supp.SalesDate | date : 'MM-dd-yyyy'}}</td>
+                <td>{{supp.SalesOrderLine.length}}</td>
+                <td>R$ {{supp.TotalAmount}}</td>
+                <td>
+                    <a class="text-primary" href="" ng-click="edit(supp.Id)"><i class="glyphicon glyphicon-edit"></i> Edit</a>
+                    <a class="text-danger" href="" ng-click="delete(supp.Id)"><i class="glyphicon glyphicon-remove"></i> Delete</a>
+                </td>
+            </tr>
+        </table>
+
+        <h2>{{formTitle}}</h2>
+        <div class="container">
+            <form name="supplierForm" ng-submit="submitForm(SalesOrder)">
+                <div class="row">
+                    <fieldset>
+                        <legend>Sales Order Info</legend>
+                        <div class="">
+                            <div class="form-group col-md-3">
+                                <label for="ID">ID</label>
+                                <input type="text" id="ID" class="form-control" placeholder="Product ID" ng-model="SalesOrder.Id" disabled>
+                            </div>
+                            <div class="form-group col-md-3">
+                                <label for="UserId">User</label>
+                                <select id="UserId" class="form-control" ng-model="SalesOrder.UserId" ng-options="s.Id as s.Name for s in users track by s.Id" required>
+                                    <option value="">Choose Option</option>
+                                </select>
+                            </div>
+                            <div class="form-group col-md-3">
+                                <label for="SalesDate">Sales Date</label>
+                                <input class="form-control" id="SalesDate" type="date" placeholder="MM-dd-yyyy" min="1900-01-01" max="2060-12-31" ng-model="SalesOrder.SalesDate" required>
+                            </div>
+                            <div class="form-group col-md-3">
+                                <label for="TotalAmount">Total Amount</label>
+                                <input type="text" id="TotalAmount" class="form-control" placeholder="Total Amount" ng-model="SalesOrder.TotalAmount" disabled>
+                            </div>
+                        </div>
+                    </fieldset>
+                </div>
+                <div class="row">
+                    <fieldset>
+                        <legend>Sales Order Line</legend>
+                        <a class="btn btn-sm btn-success" data-ng-click="cloneItem()"><i class="glyphicon glyphicon-duplicate"></i> New Line </a>
+                        <div class="row" data-ng-repeat="SOLine in SalesOrder.SalesOrderLine">
+                            <div class="form-group col-md-4">
+                                <label for="ProductId">Product</label>
+                                <select id="ProductId" class="form-control" ng-model="SOLine.ProductId" ng-options="s.Id as s.Name for s in products" required>
+                                    <option value="">Choose Option</option>
+                                </select>
+                            </div>
+                            <div class="form-group col-md-2">
+                                <label for="QTY">Quantity</label>
+                                <input type="text" id="QTY" class="form-control" placeholder="Quantity" ng-model="SOLine.Quantity" required>
+                            </div>
+                            <div class="col-md-4">
+                                <label for="">Operations</label>
+                                <br />
+
+                                <a class="btn btn-sm btn-warning  delete-field-{{$index}}" data-ng-click="removeItem(SOLine)"><i class="glyphicon glyphicon-remove-circle"></i> Remove Line </a>
+                            </div>
+                        </div>
+                    </fieldset>
+
+                </div>
+                <div class="row">
+                    <button type="submit" class="btn btn-default">Add/Update</button>
+                    <button type="reset" class="btn btn-default">Clear</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

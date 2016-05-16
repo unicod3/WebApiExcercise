@@ -175,6 +175,7 @@
     <None Include="scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="scripts\app\ProductClient.js" />
     <Content Include="scripts\app\PurchaseOrderClient.js" />
+    <Content Include="scripts\app\SalesOrderClient.js" />
     <Content Include="scripts\app\UserClient.js" />
     <Content Include="scripts\jquery-1.10.2.js" />
     <Content Include="scripts\jquery-1.10.2.min.js" />

@@ -9,7 +9,7 @@ There are five models in the project
 - Purchase Orders
 - Sales Orders
 
-All of them has it's own page with AngularJS CRUD implementation on the front-end
+All of them have it's own page with AngularJS CRUD implementation on the front-end
 
 How to keep track of stock
 --------------------------

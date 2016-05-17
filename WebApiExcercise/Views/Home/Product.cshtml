@@ -12,6 +12,7 @@
                 <th>Name</th>
                 <th>Supplier</th>
                 <th>Price</th>
+                <th>Quantity</th>
                 <th> </th>
             </tr>
             <tr ng-repeat="supp in products">
@@ -19,6 +20,7 @@
                 <td>{{supp.Name}}</td>
                 <td>{{supp.Supplier.Name}}</td>
                 <td>R$ {{supp.Price}}</td>
+                <td>{{supp.Quantity}}</td>
                 <td>
                     <a class="text-primary" href="#" ng-click="edit(supp.Id)"><i class="glyphicon glyphicon-edit"></i> Edit</a>
                     <a class="text-danger" href="#" ng-click="delete(supp.Id)"><i class="glyphicon glyphicon-remove"></i> Delete</a>

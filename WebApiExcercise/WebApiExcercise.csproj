@@ -172,6 +172,8 @@
     <Content Include="Content\bootstrap.css.map" />
     <Content Include="Content\bootstrap-theme.min.css.map" />
     <Content Include="Content\bootstrap-theme.css.map" />
+    <None Include="Properties\PublishProfiles\SinanProfile.pubxml" />
+    <None Include="Properties\PublishProfiles\webapiexcercise.pubxml" />
     <None Include="scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="scripts\app\ProductClient.js" />
     <Content Include="scripts\app\PurchaseOrderClient.js" />

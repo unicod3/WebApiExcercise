@@ -11,10 +11,15 @@ namespace WebApiExcercise.Repository
 
         private List<Product> _productTable;
         private List<Supplier> _supplierTable;
+        private List<SalesOrderLine> _salesOrderLineTable;
+        private List<PurchaseOrderLine> _purchaseOrderLineTable;
 
-        public ProductRepository() {
+        public ProductRepository()
+        {
             _productTable = TestDataHelper.GetMyProducts();
             _supplierTable = TestDataHelper.GetMySuppliers();
+            _salesOrderLineTable = TestDataHelper.GetMySalesOrderLines();
+            _purchaseOrderLineTable = TestDataHelper.GetMyPurchaseOrderLines();
         }
 
         public void Add(Product product)
@@ -26,7 +31,14 @@ namespace WebApiExcercise.Repository
         }
 
         public IEnumerable<Product> AllProducts()
-        {
+        { 
+            foreach (var item in _productTable)
+            { 
+                int itemPurchaseLineQTY = _purchaseOrderLineTable.Where(x => x.ProductId == item.Id).Sum(x => x.Quantity);
+                int itemSalesLineQTY = _salesOrderLineTable.Where(x => x.ProductId == item.Id).Sum(x => x.Quantity);
+
+                item.Quantity = itemPurchaseLineQTY - itemSalesLineQTY;
+            } 
             return _productTable;
         }
 

@@ -69,9 +69,9 @@ namespace WebApiExcercise
         };
         private static List<SalesOrderLine> SO2 = new List<SalesOrderLine>()
         {
-            new SalesOrderLine { Id = 1, ProductId = 4, Product = P4, Quantity = 5 },
-            new SalesOrderLine { Id = 2, ProductId = 5, Product = P5, Quantity = 5 },
-            new SalesOrderLine { Id = 3, ProductId = 6, Product = P6, Quantity = 5 }
+            new SalesOrderLine { Id = 1, ProductId = 4, Product = P4, Quantity = 3 },
+            new SalesOrderLine { Id = 2, ProductId = 5, Product = P5, Quantity = 2 },
+            new SalesOrderLine { Id = 3, ProductId = 6, Product = P6, Quantity = 4 }
         };
 
 
@@ -114,17 +114,33 @@ namespace WebApiExcercise
         }
 
         /// <summary>
+        /// Get List Of PurchaseOrderLines
+        /// </summary>
+        /// <returns></returns>
+        public static List<PurchaseOrderLine> GetMyPurchaseOrderLines()
+        {
+            return PO1.Concat(PO2).ToList();
+        }
+
+        /// <summary>
         /// Get List Of SalesOrders
         /// </summary>
         /// <returns>List<SalesOrder></returns>
         public static List<SalesOrder> GetMySalesOrders()
         {
             return new List<SalesOrder>() {
-                 new SalesOrder { Id = 1,  TotalAmount = 150, SalesDate = DateTime.Now.AddDays(-1), UserId = 1, User = User1, SalesOrderLine = SO2 },
+                 new SalesOrder { Id = 1,  TotalAmount = 150, SalesDate = DateTime.Now.AddDays(-1), UserId = 1, User = User1, SalesOrderLine = SO1 },
                  new SalesOrder { Id = 2,  TotalAmount = 150, SalesDate = DateTime.Now.AddDays(-2), UserId = 2, User = User2, SalesOrderLine = SO2 }
             };
         }
 
+        /// <summary>
+        /// Get List Of SalesOrderLines
+        /// </summary>
+        /// <returns></returns>
+        public static List<SalesOrderLine> GetMySalesOrderLines() {
+            return SO1.Concat(SO2).ToList();
+        }
 
     }
 }

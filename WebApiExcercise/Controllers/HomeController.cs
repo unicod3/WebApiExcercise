@@ -11,7 +11,7 @@ namespace WebApiExcercise.Controllers
         public ActionResult Index()
         {
             ViewBag.Title = "Home Page";
-
+            ViewBag.MenuID = 1;
             return View();
         }
 
@@ -22,7 +22,7 @@ namespace WebApiExcercise.Controllers
         public ActionResult Supplier()
         {
             ViewBag.Title = "Supplier Page";
-
+            ViewBag.MenuID = 2;
             return View();
         }
 
@@ -33,7 +33,7 @@ namespace WebApiExcercise.Controllers
         public ActionResult User()
         {
             ViewBag.Title = "User Page";
-
+            ViewBag.MenuID = 3;
             return View();
         }
 
@@ -44,7 +44,7 @@ namespace WebApiExcercise.Controllers
         public ActionResult Product()
         {
             ViewBag.Title = "Product Page";
-
+            ViewBag.MenuID = 4;
             return View();
         }
 
@@ -55,7 +55,7 @@ namespace WebApiExcercise.Controllers
         public ActionResult PurchaseOrder()
         {
             ViewBag.Title = "Purchase Order Page";
-
+            ViewBag.MenuID = 5;
             return View();
         }
 
@@ -66,7 +66,7 @@ namespace WebApiExcercise.Controllers
         public ActionResult SalesOrder()
         {
             ViewBag.Title = "Sales Order Page";
-
+            ViewBag.MenuID = 6;
             return View();
         }
     }
